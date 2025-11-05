@@ -3,7 +3,8 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import React, { Suspense, useRef, useState } from "react";
 import { Mesh } from "three";
 import { useLoader } from '@react-three/fiber'
-import TestRobot from './TestRobot.jsx'
+
+//import TestRobot from './TestRobot.jsx'
 
 export default function Home() {
     const ref = useRef();
@@ -13,7 +14,7 @@ export default function Home() {
             <Suspense fallback={null}>
                 <Stage controls={ref} preset="rembrandt" intensity={1} environment="city">
                     false
-                    <TestRobot />
+                    {/*<TestRobot />*/}
                     false
                 </Stage>
             </Suspense>
