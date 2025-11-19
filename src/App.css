@@ -40,3 +40,18 @@
 .read-the-docs {
   color: #888;
 }
+
+@font-face {
+  font-family: 'Pixel';
+  src: url('./assets/fonts/PressStart2P-vaV7.ttf') format('truetype');
+}
+
+h1, h2, h3, h4, h5, h6, body, p, em, .custom-title {
+  font-family: 'Pixel', sans-serif;
+}
+
+.textSpacing {
+  margin: 5rem;
+  padding-left: 4rem;
+  text-align: left;
+}
