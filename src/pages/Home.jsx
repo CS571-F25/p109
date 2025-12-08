@@ -1,117 +1,200 @@
-import { useEffect, useRef, Suspense, useState } from 'react'
-import { useThree, Canvas, useFrame } from '@react-three/fiber'
-import { PerspectiveCamera, useGLTF, useAnimations, OrbitControls, Stage } from "@react-three/drei"
+import { useRef, Suspense, useState } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { OrbitControls, Stage } from "@react-three/drei"
 import { Bobashop } from '../components/Bobashop'
-import * as THREE from 'three'
-
-function RaycastInteraction({ bobaShopRef }) {
-    const { camera, gl } = useThree()
-    const raycaster = useRef(new THREE.Raycaster())
-    const mouse = useRef(new THREE.Vector2())
-    const [hoveredObject, setHoveredObject] = useState(null)
-    const objectStates = useRef({}) // Store original positions and target positions
-
-    const handleMouseMove = (event) => {
-        const rect = gl.domElement.getBoundingClientRect()
-        mouse.current.x = ((event.clientX - rect.left) / rect.width) * 2 - 1
-        mouse.current.y = -((event.clientY - rect.top) / rect.height) * 2 + 1
-
-        if (!bobaShopRef.current) return
-
-        raycaster.current.setFromCamera(mouse.current, camera)
-        const intersects = raycaster.current.intersectObjects(bobaShopRef.current.children, true)
-
-        if (intersects.length > 0) {
-            const object = intersects[0].object
-            console.log('Hovering over:', object.name)
-            
-            // Initialize object state if not exists
-            if (!objectStates.current[object.uuid]) {
-                objectStates.current[object.uuid] = {
-                    originalPosition: object.position.clone(),
-                    currentObject: object
-                }
-            }
-            
-            setHoveredObject(object)
-        } else {
-            setHoveredObject(null)
-        }
-    }
-
-    useFrame(() => {
-        // Animate hovered object upward
-        if (hoveredObject) {
-            const state = objectStates.current[hoveredObject.uuid]
-            if (state) {
-                const targetY = state.originalPosition.y + 0.5
-                hoveredObject.position.y += (targetY - hoveredObject.position.y) * 0.1
-            }
-        }
-
-        // Animate non-hovered objects back to original position
-        Object.values(objectStates.current).forEach((state) => {
-            if (state.currentObject !== hoveredObject) {
-                state.currentObject.position.y += (state.originalPosition.y - state.currentObject.position.y) * 0.1
-            }
-        })
-    })
-
-    useEffect(() => {
-        gl.domElement.addEventListener('mousemove', handleMouseMove)
-
-        return () => {
-            gl.domElement.removeEventListener('mousemove', handleMouseMove)
-        }
-    }, [gl, camera, hoveredObject])
-
-    return null
-}
-
-function CameraSetup({ controlsRef }) {
-    const { camera } = useThree();
-
-    useEffect(() => {
-        // Position camera inside the box
-        //camera.position.set(0, 0, 0)
-        //camera.lookAt(6, 1, 6)
-
-        // Constrain OrbitControls to stay inside
-        if (controlsRef.current) {
-            // controlsRef.current.autoRotate = true
-            // controlsRef.current.autoRotateSpeed = 4
-            // Limit vertical rotation to prevent seeing above/below
-            controlsRef.current.minPolarAngle = Math.PI * 0.3
-            controlsRef.current.maxPolarAngle = Math.PI * 0.5
-            // Limit horizontal rotation to only see inside the L opening (front-right)
-            controlsRef.current.minAzimuthAngle = -Math.PI * 0.05
-            controlsRef.current.maxAzimuthAngle = Math.PI * 0.55
-            // Disable right-drag (pan)
-            controlsRef.current.enablePan = false
-            // Set controls target
-            controlsRef.current.update()
-        }
-    }, [camera, controlsRef])
-
-    return null;
-}
+import { RaycastInteraction } from '../components/RaycastInteraction'
+import { CameraSetup } from '../components/CameraSetup'
+import { MeshModal } from '../components/MeshModal'
 
 export default function Home() {
     const controlsRef = useRef()
     const bobaShopRef = useRef()
+    const raycastRef = useRef()
+    const audioRef = useRef(null)
+    const [selectedMesh, setSelectedMesh] = useState(null)
+    const [hoverEnabled, setHoverEnabled] = useState(true)
+    const [isScaling, setIsScaling] = useState(false)
+    const [isMusicPlaying, setIsMusicPlaying] = useState(false)
+    const [showHelp, setShowHelp] = useState(false)
+
+    const handleMeshClick = (meshName) => {
+        setSelectedMesh(meshName)
+    }
+
+    const closeModal = () => {
+        setSelectedMesh(null)
+        setIsScaling(false)
+    }
+
+    const toggleHover = () => {
+        setHoverEnabled(!hoverEnabled)
+    }
+
+    const toggleMusic = () => {
+        if (audioRef.current) {
+            if (isMusicPlaying) {
+                audioRef.current.pause()
+            } else {
+                audioRef.current.play()
+            }
+            setIsMusicPlaying(!isMusicPlaying)
+        }
+    }
+
+    const toggleHelp = () => {
+        setShowHelp(!showHelp)
+    }
 
     return (
-        <Canvas style={{ width: '100vw', height: '100vh' }}>
-            <CameraSetup controlsRef={controlsRef} />
-            <RaycastInteraction bobaShopRef={bobaShopRef} />
-            <Suspense fallback={null}>
-                <Stage controls={controlsRef}>
-                    <group ref={bobaShopRef}>
-                        <Bobashop />
-                    </group>
-                </Stage>
-            </Suspense>
-            <OrbitControls ref={controlsRef} />
-        </Canvas>
+        <>
+            <Canvas style={{ width: '100vw', height: '100vh' }}>
+                <CameraSetup controlsRef={controlsRef} />
+                <RaycastInteraction 
+                    bobaShopRef={bobaShopRef} 
+                    onMeshClick={handleMeshClick} 
+                    hoverEnabled={hoverEnabled}
+                    onScalingChange={setIsScaling}
+                />
+                <Suspense fallback={null}>
+                    <Stage controls={controlsRef}>
+                        <group ref={bobaShopRef}>
+                            <Bobashop />
+                        </group>
+                    </Stage>
+                </Suspense>
+                <OrbitControls ref={controlsRef} />
+            </Canvas>
+
+            {/* Hidden Audio Element */}
+            <audio ref={audioRef} loop>
+                <source src="/p109/music.mp3" type="audio/mpeg" />
+                Your browser does not support the audio element.
+            </audio>
+
+            {/* Hover Toggle Button */}
+            <button
+                onClick={toggleHover}
+                style={{
+                    position: 'fixed',
+                    top: '20px',
+                    right: '20px',
+                    padding: '10px 20px',
+                    backgroundColor: hoverEnabled ? '#28a745' : '#dc3545',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    fontWeight: 'bold',
+                    zIndex: 999,
+                    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)'
+                }}
+            >
+                {hoverEnabled ? 'Hover: ON' : 'Hover: OFF'}
+            </button>
+
+            {/* Music Button */}
+            <button
+                onClick={toggleMusic}
+                style={{
+                    position: 'fixed',
+                    top: '20px',
+                    right: '200px',
+                    padding: '10px 20px',
+                    backgroundColor: isMusicPlaying ? '#007bff' : '#6c757d',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    fontWeight: 'bold',
+                    zIndex: 999,
+                    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)'
+                }}
+            >
+                {isMusicPlaying ? '🎵 Music: ON' : '🔇 Music: OFF'}
+            </button>
+
+            {/* Question Button */}
+            <button
+                onClick={toggleHelp}
+                style={{
+                    position: 'fixed',
+                    top: '20px',
+                    right: '350px',
+                    padding: '10px 20px',
+                    backgroundColor: showHelp ? '#ffc107' : '#6c757d',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    fontWeight: 'bold',
+                    zIndex: 999,
+                    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)'
+                }}
+            >
+                ❓ Help
+            </button>
+
+            {/* Help Modal */}
+            {showHelp && (
+                <div style={{
+                    position: 'fixed',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    backgroundColor: 'white',
+                    padding: '30px',
+                    borderRadius: '10px',
+                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
+                    zIndex: 1000,
+                    maxWidth: '500px',
+                    maxHeight: '80vh',
+                    overflowY: 'auto'
+                }}>
+                    <h2 style={{ marginTop: 0, color: '#333' }}>How to Use</h2>
+                    <p><strong>Hover:</strong> Toggle hover animation effects on objects</p>
+                    <p><strong>Music:</strong> Play or pause background music</p>
+                    <p><strong>Click Objects:</strong> Click on the interactive meshes to view more information</p>
+                    <p><strong>Rotate Camera:</strong> Left-click and drag to rotate the view</p>
+                    <p><strong>Zoom:</strong> Scroll to zoom in and out</p>
+                    <button
+                        onClick={toggleHelp}
+                        style={{
+                            padding: '10px 20px',
+                            backgroundColor: '#dc3545',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer',
+                            fontSize: '14px',
+                            fontWeight: 'bold',
+                            width: '100%'
+                        }}
+                    >
+                        Close
+                    </button>
+                </div>
+            )}
+
+            {/* Overlay for Help Modal */}
+            {showHelp && (
+                <div
+                    onClick={toggleHelp}
+                    style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        zIndex: 999
+                    }}
+                />
+            )}
+
+            <MeshModal selectedMesh={selectedMesh} onClose={closeModal} />
+        </>
     )
 }
