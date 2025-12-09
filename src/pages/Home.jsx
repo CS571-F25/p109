@@ -1,10 +1,27 @@
-import { useRef, Suspense, useState } from 'react'
+import { useRef, Suspense, useState, useEffect } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Stage } from "@react-three/drei"
 import { Bobashop } from '../components/Bobashop'
 import { RaycastInteraction } from '../components/RaycastInteraction'
 import { CameraSetup } from '../components/CameraSetup'
 import { MeshModal } from '../components/MeshModal'
+import { WelcomeScreen } from '../components/WelcomeScreen'
+
+const ROUTE_TO_MESH = {
+    '/about-me': 'mesh_244',
+    '/projects': 'mesh_245',
+    '/experience': 'mesh_246'
+}
+
+// Inverse mapping from mesh to route
+const MESH_TO_ROUTE = {
+    'mesh_244': '/about-me',
+    'mesh_238': '/about-me',
+    'mesh_245': '/projects',
+    'mesh_243': '/projects',
+    'mesh_246': '/experience',
+    'mesh_242': '/experience'
+}
 
 export default function Home() {
     const controlsRef = useRef()
@@ -12,18 +29,46 @@ export default function Home() {
     const raycastRef = useRef()
     const audioRef = useRef(null)
     const [selectedMesh, setSelectedMesh] = useState(null)
-    const [hoverEnabled, setHoverEnabled] = useState(true)
+    const [hoverEnabled, setHoverEnabled] = useState(false)
     const [isScaling, setIsScaling] = useState(false)
     const [isMusicPlaying, setIsMusicPlaying] = useState(false)
     const [showHelp, setShowHelp] = useState(false)
+    const [showWelcome, setShowWelcome] = useState(true)
+
+    // Handle hash routing
+    useEffect(() => {
+        const handleHashChange = () => {
+            const hash = window.location.hash.slice(1) // Remove the '#'
+            const meshName = ROUTE_TO_MESH[hash]
+            if (meshName) {
+                setSelectedMesh(meshName)
+            } else {
+                setSelectedMesh(null)
+            }
+        }
+
+        // Handle initial load
+        handleHashChange()
+
+        // Listen for hash changes
+        window.addEventListener('hashchange', handleHashChange)
+        return () => window.removeEventListener('hashchange', handleHashChange)
+    }, [])
 
     const handleMeshClick = (meshName) => {
         setSelectedMesh(meshName)
+        // Set the hash route when a mesh is clicked
+        const route = MESH_TO_ROUTE[meshName]
+        if (route) {
+            window.location.hash = route
+        }
     }
 
     const closeModal = () => {
         setSelectedMesh(null)
         setIsScaling(false)
+        // Clear the hash when closing the modal
+        window.location.hash = ''
     }
 
     const toggleHover = () => {
@@ -47,7 +92,8 @@ export default function Home() {
 
     return (
         <>
-            <Canvas style={{ width: '100vw', height: '100vh' }}>
+            <Canvas style={{ width: '90vw', height: '90vh', margin: '0 auto', 
+                display: 'block', border: '6px solid #2c2116ff', borderRadius: '10px', backgroundColor: '#bcdac3' }}>
                 <CameraSetup controlsRef={controlsRef} />
                 <RaycastInteraction 
                     bobaShopRef={bobaShopRef} 
@@ -193,6 +239,9 @@ export default function Home() {
                     }}
                 />
             )}
+
+            {/* Welcome Screen */}
+            <WelcomeScreen showWelcome={showWelcome} setShowWelcome={setShowWelcome} />
 
             <MeshModal selectedMesh={selectedMesh} onClose={closeModal} />
         </>

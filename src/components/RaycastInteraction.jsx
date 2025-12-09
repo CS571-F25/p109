@@ -68,6 +68,11 @@ export function RaycastInteraction({ bobaShopRef, onMeshClick, hoverEnabled, onS
     }
 
     const handleMouseClick = (event) => {
+        // Ignore clicks that occur outside the canvas (e.g., on buttons)
+        if (event.target !== gl.domElement) {
+            return
+        }
+
         const rect = gl.domElement.getBoundingClientRect()
         mouse.current.x = ((event.clientX - rect.left) / rect.width) * 2 - 1
         mouse.current.y = -((event.clientY - rect.top) / rect.height) * 2 + 1

@@ -2,6 +2,27 @@ import { AboutMe } from '../pages/AboutMe'
 import { Projects } from '../pages/Projects'
 import { Experience } from '../pages/Experience'
 
+const bounceAnimation = `
+    @keyframes modalBounce {
+        0% {
+            transform: scale(0.5);
+            opacity: 0;
+        }
+        60% {
+            transform: scale(1.02);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    .modal-content {
+        animation: modalBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+`
+
 const MESH_PAGES = {
     'mesh_244': <AboutMe />,
     'mesh_238': <AboutMe />,
@@ -37,15 +58,17 @@ export function MeshModal({ selectedMesh, onClose }) {
             justifyContent: 'center',
             zIndex: 1000
         }}>
-            <div style={{
+            <style>{bounceAnimation}</style>
+            <div className="modal-content" style={{
                 backgroundColor: 'white',
                 padding: '30px',
                 borderRadius: '10px',
                 boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                maxWidth: '500px',
+                maxWidth: '80vw',
                 width: '90%',
                 maxHeight: '80vh',
-                overflowY: 'auto'
+                overflowY: 'auto',
+                fontFamily: "'SuperBubbly', system-ui, Avenir, Helvetica, Arial, sans-serif"
             }}>
                 {pageContent}
 

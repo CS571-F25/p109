@@ -5,6 +5,7 @@ export function CameraSetup({ controlsRef }) {
     const { camera } = useThree()
 
     useEffect(() => {
+        camera.position.set(7, 0, 0);
         // Constrain OrbitControls to stay inside
         if (controlsRef.current) {
             // Limit vertical rotation to prevent seeing above/below
