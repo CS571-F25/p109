@@ -15,7 +15,7 @@
 
 @font-face {
   font-family: 'SuperBubbly';
-  src: url('/p109/assets/fonts/SuperBubbly-G35nA.ttf') format('truetype');
+  src: url('/p109/fonts/SuperBubbly-G35nA.ttf') format('truetype');
 }
 
 @keyframes fallingBackground {
@@ -41,7 +41,7 @@ body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-image: url('/p109/src/assets/boba_background.png');
+  background-image: url('/p109/boba_background.png');
   background-size: 300px 300px;
   background-repeat: repeat;
   background-position: 0 0;
