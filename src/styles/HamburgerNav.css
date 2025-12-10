@@ -2,21 +2,24 @@
     position: fixed;
     top: 2vh;
     left: 2vw;
-    z-index: 1001;
+    z-index: 1100;
 }
 
 .hamburger {
     background: #6c757d;
-    border: 2px solid #333;
     border-radius: 5px;
     cursor: pointer;
-    padding: 10px;
-    width: 40px;
-    height: 40px;
+    padding: 1vw 1.5vh;;
+    width: 3.50rem;
+    height: 3.50rem;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.hamburger:hover {
+    filter: brightness(0.85);
 }
 
 .hamburger span {
@@ -30,7 +33,7 @@
 
 .nav-menu {
     position: absolute;
-    top: 45px;
+    top: 3.5rem;
     left: 0;
     min-width: 200px;
     background-color: white;
@@ -41,16 +44,17 @@
     transform: translateY(-10px);
     transition: all 0.3s ease;
     pointer-events: none;
-    padding-top: 5px;
+    padding-top: 10px;
+    margin-top: 5px;
 }
 
 .nav-menu::before {
     content: '';
     position: absolute;
-    top: -5px;
+    top: -10px;
     left: 0;
     right: 0;
-    height: 5px;
+    height: 10px;
     background: transparent;
 }
 

@@ -16,13 +16,13 @@ export function WelcomeScreen({ showWelcome, setShowWelcome }) {
                     <div 
                         className={`welcome-curtain welcome-curtain-left ${curtainOpen ? 'curtain-left' : ''}`}
                     >
-                        <h1 className="welcome-text">welcome to my portfolio!</h1>
+                        <h2 className="welcome-text">welcome to my portfolio!</h2>
                     </div>
                     {/* Right Curtain */}
                     <div 
                         className={`welcome-curtain welcome-curtain-right ${curtainOpen ? 'curtain-right' : ''}`}
                     >
-                        <h1 className="welcome-text">left-click + drag & zoom!</h1>
+                        <h2 className="welcome-text">left-click + drag & zoom!</h2>
                     </div>
                     {/* Enter Button */}
                     <button

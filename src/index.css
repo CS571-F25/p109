@@ -20,6 +20,11 @@
 
 * {
   font-family: 'SuperBubbly', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  cursor: url('/p109/cursor.png') 0 0, auto;
+}
+
+button, a, .control-button, .hamburger, .implementation-button, .close-button, .nav-menu button {
+  cursor: url('/p109/cursorclick.png') 0 0, pointer !important;
 }
 
 @keyframes fallingBackground {

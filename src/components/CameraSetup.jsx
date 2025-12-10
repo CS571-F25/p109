@@ -9,20 +9,20 @@ export function CameraSetup({ controlsRef }) {
         // Constrain OrbitControls to stay inside
         if (controlsRef.current) {
             // Limit vertical rotation to prevent seeing above/below
-            controlsRef.current.minPolarAngle = Math.PI * 0.3
-            controlsRef.current.maxPolarAngle = Math.PI * 0.5
-            
+            controlsRef.current.minPolarAngle = Math.PI * 0.3;
+            controlsRef.current.maxPolarAngle = Math.PI * 0.5;
+
             // Limit horizontal rotation to only see inside the L opening (front-right)
-            controlsRef.current.minAzimuthAngle = -Math.PI * 0.05
-            controlsRef.current.maxAzimuthAngle = Math.PI * 0.55
-            
+            controlsRef.current.minAzimuthAngle = -Math.PI * 0.05;
+            controlsRef.current.maxAzimuthAngle = Math.PI * 0.55;
+
             // Disable right-drag (pan)
-            controlsRef.current.enablePan = false
-            
+            controlsRef.current.enablePan = false;
+
             // Set controls target
-            controlsRef.current.update()
+            controlsRef.current.update();
         }
-    }, [camera, controlsRef])
+    }, [camera, controlsRef]);
 
     return null
 }

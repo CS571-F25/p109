@@ -3,7 +3,7 @@
     height: 90vh;
     margin: 0 auto;
     display: block;
-    border: 6px solid #2c2116ff;
+    border: 6px solid #503c25;
     border-radius: 10px;
     background-color: #bcdac3;
 }
@@ -11,12 +11,12 @@
 .control-button {
     position: fixed;
     top: 2vh;
-    padding: 1vh 1vw;
+    padding: 1vh 1.5vw;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: clamp(12px, 1vw, 18px);
+    font-size: clamp(1.5rem, 1vw, 18px);
     font-weight: bold;
     z-index: 999;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -38,7 +38,7 @@
 }
 
 .music-button {
-    right: calc(2vw + 7vw);
+    right: calc(2vw + 10.25vw);
 }
 
 .music-button.playing {
@@ -52,7 +52,7 @@
 }
 
 .help-button {
-    right: calc(2vw + 14vw);
+    right: calc(2vw + 20.5vw);
 }
 
 .help-button.active {
@@ -65,19 +65,34 @@
     color: #ffffff;
 }
 
+.help-button:hover,
+.music-button:hover,
+.hover-button:hover,
+.implementation-button:hover {
+    filter: brightness(0.85);
+}
+
 .help-modal {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background-color: white;
-    padding: 30px;
+    padding: 1.5rem 2rem;
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    max-width: 500px;
-    max-height: 80vh;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    z-index: 1100;
+    min-width: 2rem;
+    max-width: 30vw;
+    max-height: 50vh;
     overflow-y: auto;
+}
+
+.help-dropdown {
+    top: calc(2vh + 4rem);
+    right: calc(2vw + 20.5vw);
+}
+
+.implementation-dropdown {
+    top: calc(2vh + 4rem);
+    left: calc(2rem + 4rem);
 }
 
 .help-modal h2 {
@@ -91,14 +106,19 @@
 
 .close-button {
     padding: 10px 20px;
-    background-color: #dc3545;
-    color: white;
+    background-color: #fde498;
+    color: #6c757d;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
     width: 100%;
+}
+
+.close-button:hover {
+    background-color: #fcd77f;
+    color: #6c757d;
 }
 
 .modal-overlay {
@@ -109,4 +129,32 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
+}
+
+.portfolio-title {
+    position: fixed;
+    top: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    margin: 0;
+    font-size: clamp(1.5rem, 3vw, 3rem);
+    text-align: center;
+    color: #503c25;
+}
+
+.implementation-button {
+    position: fixed;
+    top: 2vh;
+    left: calc(2rem + 4rem);
+    background: #6c757d;
+    color: white;
+    border-radius: 5px;
+    padding: 0.6rem 1.5vh;
+    cursor: pointer;
+    font-size: clamp(1.5rem, 1vw, 16px);
+    font-weight: bold;
+    z-index: 1001;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
 }

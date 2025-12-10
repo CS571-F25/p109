@@ -2,11 +2,14 @@ import { useRef, Suspense, useState, useEffect } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Stage } from "@react-three/drei"
 import { Bobashop } from '../components/Bobashop'
-import { RaycastInteraction } from '../components/RaycastInteraction'
+import { MouseClickInteraction } from '../components/MouseClickInteraction'
+import { MouseHoverInteraction } from '../components/MouseHoverInteraction'
 import { CameraSetup } from '../components/CameraSetup'
 import { MeshModal } from '../components/MeshModal'
 import { WelcomeScreen } from '../components/WelcomeScreen'
 import { HamburgerNav } from '../components/HamburgerNav'
+import { HelpModal } from '../components/modals/HelpModal'
+import { ImplementationModal } from '../components/modals/ImplementationModal'
 import '../styles/Home.css'
 
 const ROUTE_TO_MESH = {
@@ -35,6 +38,7 @@ export default function Home() {
     const [isScaling, setIsScaling] = useState(false)
     const [isMusicPlaying, setIsMusicPlaying] = useState(false)
     const [showHelp, setShowHelp] = useState(false)
+    const [showImplementation, setShowImplementation] = useState(false)
     const [showWelcome, setShowWelcome] = useState(true)
 
     // Handle hash routing
@@ -92,6 +96,10 @@ export default function Home() {
         setShowHelp(!showHelp)
     }
 
+    const toggleImplementation = () => {
+        setShowImplementation(!showImplementation)
+    }
+
     const handleNavigate = (path) => {
         if (path === '/') {
             // Reset camera to original position
@@ -110,14 +118,25 @@ export default function Home() {
     return (
         <>
             <HamburgerNav onNavigate={handleNavigate} />
+            
+            <button
+                onClick={toggleImplementation}
+                className="implementation-button"
+            >
+                implementation
+            </button>
+            
+            <h1 className="portfolio-title">em's portfolio</h1>
 
             <Canvas className="canvas-container">
                 <CameraSetup controlsRef={controlsRef} />
-                <RaycastInteraction 
+                <MouseHoverInteraction 
                     bobaShopRef={bobaShopRef} 
-                    onMeshClick={handleMeshClick} 
                     hoverEnabled={hoverEnabled}
-                    onScalingChange={setIsScaling}
+                />
+                <MouseClickInteraction 
+                    bobaShopRef={bobaShopRef} 
+                    onMeshClick={handleMeshClick}
                 />
                 <Suspense fallback={null}>
                     <Stage controls={controlsRef}>
@@ -159,31 +178,8 @@ export default function Home() {
                 help
             </button>
 
-            {/* Help Modal */}
-            {showHelp && (
-                <div className="help-modal">
-                    <h2>How to Use</h2>
-                    <p><strong>Hover:</strong> Toggle hover animation effects on objects</p>
-                    <p><strong>Music:</strong> Play or pause background music</p>
-                    <p><strong>Click Objects:</strong> Click on the interactive meshes to view more information</p>
-                    <p><strong>Rotate Camera:</strong> Left-click and drag to rotate the view</p>
-                    <p><strong>Zoom:</strong> Scroll to zoom in and out</p>
-                    <button
-                        onClick={toggleHelp}
-                        className="close-button"
-                    >
-                        Close
-                    </button>
-                </div>
-            )}
-
-            {/* Overlay for Help Modal */}
-            {showHelp && (
-                <div
-                    onClick={toggleHelp}
-                    className="modal-overlay"
-                />
-            )}
+            <HelpModal show={showHelp} onClose={toggleHelp} />
+            <ImplementationModal show={showImplementation} onClose={toggleImplementation} />
 
             {/* Welcome Screen */}
             <WelcomeScreen showWelcome={showWelcome} setShowWelcome={setShowWelcome} />

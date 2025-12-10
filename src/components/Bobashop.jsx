@@ -9,6 +9,7 @@ export function Bobashop(props) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/p109/emsbobashop_FINAL.glb')
   const { actions } = useAnimations(animations, group)
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="defaultScene">
