@@ -1,27 +1,7 @@
 import { AboutMe } from '../pages/AboutMe'
 import { Projects } from '../pages/Projects'
 import { Experience } from '../pages/Experience'
-
-const bounceAnimation = `
-    @keyframes modalBounce {
-        0% {
-            transform: scale(0.5);
-            opacity: 0;
-        }
-        60% {
-            transform: scale(1.02);
-            opacity: 1;
-        }
-        100% {
-            transform: scale(1);
-            opacity: 1;
-        }
-    }
-
-    .modal-content {
-        animation: modalBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-`
+import '../styles/MeshModal.css'
 
 const MESH_PAGES = {
     'mesh_244': <AboutMe />,
@@ -46,43 +26,13 @@ export function MeshModal({ selectedMesh, onClose }) {
     }
 
     return (
-        <div style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000
-        }}>
-            <style>{bounceAnimation}</style>
-            <div className="modal-content" style={{
-                backgroundColor: 'white',
-                padding: '30px',
-                borderRadius: '10px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                maxWidth: '80vw',
-                width: '90%',
-                maxHeight: '80vh',
-                overflowY: 'auto',
-                fontFamily: "'SuperBubbly', system-ui, Avenir, Helvetica, Arial, sans-serif"
-            }}>
+        <div className="mesh-modal-overlay">
+            <div className="modal-content">
                 {pageContent}
 
                 <button
                     onClick={handleClose}
-                    style={{
-                        marginTop: '20px',
-                        padding: '10px 20px',
-                        backgroundColor: '#007bff',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '5px',
-                        cursor: 'pointer'
-                    }}
+                    className="modal-close-button"
                 >
                     Close
                 </button>

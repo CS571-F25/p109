@@ -46,8 +46,12 @@
   src: url('./assets/fonts/PressStart2P-vaV7.ttf') format('truetype');
 }
 
-h1, h2, h3, h4, h5, h6, body, p, em, .custom-title {
-  font-family: 'Pixel', sans-serif;
+h1, h2, h3, h4, h5, h6, .custom-title {
+  font-family: 'SuperBubbly', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+p, li, body, em {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 .textSpacing {

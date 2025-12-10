@@ -1,0 +1,92 @@
+@keyframes openCurtainLeft {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes openCurtainRight {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.curtain-left {
+    animation: openCurtainLeft 1s ease-in-out forwards;
+}
+
+.curtain-right {
+    animation: openCurtainRight 1s ease-in-out forwards;
+}
+
+.button-fade {
+    animation: fadeOut 1s ease-in-out forwards;
+}
+
+.welcome-curtain {
+    position: fixed;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-color: #6c757d;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-curtain-left {
+    left: 0;
+}
+
+.welcome-curtain-right {
+    right: 0;
+}
+
+.welcome-text {
+    font-size: clamp(2em, 3vw, 3em);
+    color: white;
+    margin: 0;
+    text-align: center;
+    user-select: none;
+    font-family: 'SuperBubbly', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.welcome-enter-button {
+    position: fixed;
+    padding: 1rem 2rem;
+    font-size: 18px;
+    background-color: #fde498;
+    color: #6c757d;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 2001;
+    top: 60vh;
+    left: 50vw;
+    transform: translate(-50%, 50%);
+    transition: background-color 0.3s ease;
+    font-family: 'SuperBubbly', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.welcome-enter-button:hover {
+    background-color: #908258;
+    color: #ffffff;
+}

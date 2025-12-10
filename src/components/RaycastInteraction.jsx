@@ -61,6 +61,7 @@ export function RaycastInteraction({ bobaShopRef, onMeshClick, hoverEnabled, onS
                     }
                 }
                 hoveredObject.current = object
+                // console.log('Hovering over mesh:', object.name)
             }
         } else {
             hoveredObject.current = null

@@ -6,6 +6,8 @@ import { RaycastInteraction } from '../components/RaycastInteraction'
 import { CameraSetup } from '../components/CameraSetup'
 import { MeshModal } from '../components/MeshModal'
 import { WelcomeScreen } from '../components/WelcomeScreen'
+import { HamburgerNav } from '../components/HamburgerNav'
+import '../styles/Home.css'
 
 const ROUTE_TO_MESH = {
     '/about-me': 'mesh_244',
@@ -90,10 +92,26 @@ export default function Home() {
         setShowHelp(!showHelp)
     }
 
+    const handleNavigate = (path) => {
+        if (path === '/') {
+            // Reset camera to original position
+            if (controlsRef.current) {
+                controlsRef.current.reset()
+            }
+            // Close any open modal and clear hash
+            setSelectedMesh(null)
+            window.location.hash = ''
+        } else {
+            // Navigate to the specified path
+            window.location.hash = path
+        }
+    }
+
     return (
         <>
-            <Canvas style={{ width: '90vw', height: '90vh', margin: '0 auto', 
-                display: 'block', border: '6px solid #2c2116ff', borderRadius: '10px', backgroundColor: '#bcdac3' }}>
+            <HamburgerNav onNavigate={handleNavigate} />
+
+            <Canvas className="canvas-container">
                 <CameraSetup controlsRef={controlsRef} />
                 <RaycastInteraction 
                     bobaShopRef={bobaShopRef} 
@@ -120,86 +138,31 @@ export default function Home() {
             {/* Hover Toggle Button */}
             <button
                 onClick={toggleHover}
-                style={{
-                    position: 'fixed',
-                    top: '20px',
-                    right: '20px',
-                    padding: '10px 20px',
-                    backgroundColor: hoverEnabled ? '#28a745' : '#dc3545',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '5px',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                    fontWeight: 'bold',
-                    zIndex: 999,
-                    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)'
-                }}
+                className={`control-button hover-button ${hoverEnabled ? 'enabled' : 'disabled'}`}
             >
-                {hoverEnabled ? 'Hover: ON' : 'Hover: OFF'}
+                {hoverEnabled ? 'hover on' : 'hover off'}
             </button>
 
             {/* Music Button */}
             <button
                 onClick={toggleMusic}
-                style={{
-                    position: 'fixed',
-                    top: '20px',
-                    right: '200px',
-                    padding: '10px 20px',
-                    backgroundColor: isMusicPlaying ? '#007bff' : '#6c757d',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '5px',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                    fontWeight: 'bold',
-                    zIndex: 999,
-                    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)'
-                }}
+                className={`control-button music-button ${isMusicPlaying ? 'playing' : 'paused'}`}
             >
-                {isMusicPlaying ? '🎵 Music: ON' : '🔇 Music: OFF'}
+                {isMusicPlaying ? 'music on' : 'music off'}
             </button>
 
             {/* Question Button */}
             <button
                 onClick={toggleHelp}
-                style={{
-                    position: 'fixed',
-                    top: '20px',
-                    right: '350px',
-                    padding: '10px 20px',
-                    backgroundColor: showHelp ? '#ffc107' : '#6c757d',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '5px',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                    fontWeight: 'bold',
-                    zIndex: 999,
-                    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)'
-                }}
+                className={`control-button help-button ${showHelp ? 'active' : 'inactive'}`}
             >
-                ❓ Help
+                help
             </button>
 
             {/* Help Modal */}
             {showHelp && (
-                <div style={{
-                    position: 'fixed',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    backgroundColor: 'white',
-                    padding: '30px',
-                    borderRadius: '10px',
-                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
-                    zIndex: 1000,
-                    maxWidth: '500px',
-                    maxHeight: '80vh',
-                    overflowY: 'auto'
-                }}>
-                    <h2 style={{ marginTop: 0, color: '#333' }}>How to Use</h2>
+                <div className="help-modal">
+                    <h2>How to Use</h2>
                     <p><strong>Hover:</strong> Toggle hover animation effects on objects</p>
                     <p><strong>Music:</strong> Play or pause background music</p>
                     <p><strong>Click Objects:</strong> Click on the interactive meshes to view more information</p>
@@ -207,17 +170,7 @@ export default function Home() {
                     <p><strong>Zoom:</strong> Scroll to zoom in and out</p>
                     <button
                         onClick={toggleHelp}
-                        style={{
-                            padding: '10px 20px',
-                            backgroundColor: '#dc3545',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '5px',
-                            cursor: 'pointer',
-                            fontSize: '14px',
-                            fontWeight: 'bold',
-                            width: '100%'
-                        }}
+                        className="close-button"
                     >
                         Close
                     </button>
@@ -228,15 +181,7 @@ export default function Home() {
             {showHelp && (
                 <div
                     onClick={toggleHelp}
-                    style={{
-                        position: 'fixed',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                        zIndex: 999
-                    }}
+                    className="modal-overlay"
                 />
             )}
 

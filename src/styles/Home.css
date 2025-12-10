@@ -1,0 +1,112 @@
+.canvas-container {
+    width: 90vw;
+    height: 90vh;
+    margin: 0 auto;
+    display: block;
+    border: 6px solid #2c2116ff;
+    border-radius: 10px;
+    background-color: #bcdac3;
+}
+
+.control-button {
+    position: fixed;
+    top: 2vh;
+    padding: 1vh 1vw;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: clamp(12px, 1vw, 18px);
+    font-weight: bold;
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+}
+
+.hover-button {
+    right: 2vw;
+}
+
+.hover-button.enabled {
+    background-color: #fde498;
+    color: #6c757d;
+}
+
+.hover-button.disabled {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+.music-button {
+    right: calc(2vw + 7vw);
+}
+
+.music-button.playing {
+    background-color: #fde498;
+    color: #6c757d;
+}
+
+.music-button.paused {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+.help-button {
+    right: calc(2vw + 14vw);
+}
+
+.help-button.active {
+    background-color: #fde498;
+    color: #6c757d;
+}
+
+.help-button.inactive {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+.help-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.help-modal h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.help-modal p {
+    margin: 10px 0;
+}
+
+.close-button {
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
