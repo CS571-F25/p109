@@ -31,7 +31,7 @@ export function Projects() {
                 </div>
                 <div>
                     <p className="project-meta project-meta--greenforms"><strong>usability engineer &amp; user experience designer</strong> in a team of 3</p>
-                    <p className="project-meta project-meta--greenforms">This is a simplistic form-making application based on analysis of Qualtrics.</p>
+                    <p className="project-meta project-meta--greenforms">This is a simplistic form-making application based on the analysis of Qualtrics.</p>
                 </div>
             </div>
 
@@ -50,7 +50,7 @@ export function Projects() {
                 </div>
                 <div>
                     <p className="project-meta project-meta--fith"><strong>level designer &amp; artist</strong></p>
-                    <p className="project-meta project-meta--fith">This was <a href="https://oahte.itch.io/fall-into-the-hole-pt2" target="_blank" rel="noopener noreferrer" className="project-link">iteration</a> of my <a href="https://oahte.itch.io/fall-into-the-hole" target="_blank" rel="noopener noreferrer" className="project-link">original</a> Fall into the Hole game in the Pocket Platformer engine.</p>
+                    <p className="project-meta project-meta--fith">This is an <a href="https://oahte.itch.io/fall-into-the-hole-pt2" target="_blank" rel="noopener noreferrer" className="project-link">iteration</a> of my <a href="https://oahte.itch.io/fall-into-the-hole" target="_blank" rel="noopener noreferrer" className="project-link">original</a> Fall into the Hole game, made in the Pocket Platformer engine.</p>
                 </div>
             </div>
 
@@ -63,7 +63,7 @@ export function Projects() {
                 </div>
                 <div>
                     <p className="project-meta project-meta--boba"><strong>3D modeler and character designer</strong></p>
-                    <p className="project-meta project-meta--boba">Boba is a large robot that travels into space and heals astronauts.</p>
+                    <p className="project-meta project-meta--boba">Boba is a large robot that travels into space and heals astronauts (made in MAYA).</p>
                 </div>
             </div>
 
@@ -75,7 +75,7 @@ export function Projects() {
                 </div>
                 <div>
                     <p className="project-meta project-meta--growing"><strong>3D modeler and scene designer</strong></p>
-                    <p className="project-meta project-meta--growing">A scene assembled of childhood mementos mixed with elements of work and school.</p>
+                    <p className="project-meta project-meta--growing">A scene assembled of childhood mementos mixed with elements of work and school (made in MAYA).</p>
                 </div>
             </div>
         </div>
