@@ -147,8 +147,6 @@
     position: fixed;
     top: 2vh;
     left: calc(2rem + 4rem);
-    background: #6c757d;
-    color: white;
     border-radius: 18px;
     padding: 0.6rem 1.5vh;
     cursor: pointer;
@@ -157,4 +155,14 @@
     z-index: 1001;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     white-space: nowrap;
+}
+
+.implementation-button.active {
+    background-color: #fde498;
+    color: #6c757d;
+}
+
+.implementation-button.inactive {
+    background-color: #6c757d;
+    color: #ffffff;
 }

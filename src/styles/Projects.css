@@ -1,4 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Super+Bubbly&display=swap');
+
+.projects-page {
+    color: #503c25;
+    font-size: 1.5em;
+    font-family: 'SuperBubbly', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.projects-title {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+.projects-heading {
+    font-size: 1.5em;
+    line-height: 1.6;
+    margin-bottom: 0.5em;
+}
 
 .project-shell {
     position: relative;
@@ -12,14 +30,89 @@
     margin: 1.2em 0 2em;
 }
 
+.project-shell--chernobyl {
+    border-color: #6bff70;
+    background: radial-gradient(circle at 15% 15%, #1e2d1a, #0e1a0d 70%);
+}
+
+.project-shell--greenforms {
+    border-color: #b0ffa2;
+    background: radial-gradient(circle at 15% 15%, #2c3626, #2d3b26 70%);
+}
+
+.project-shell--fith {
+    border-color: #8b8b8b;
+    background: radial-gradient(circle at 15% 15%, #313131, #393939 70%);
+}
+
+.project-shell--boba {
+    border-color: #ff6666;
+    background: radial-gradient(circle at 15% 15%, #2d1a1a, #130d1a 70%);
+}
+
+.project-shell--growing {
+    border-color: #00d9ff;
+    background: radial-gradient(circle at 15% 15%, #1a2d2d, #0d1a1a 70%);
+}
+
+.project-gallery {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.project-image {
+    width: 20rem;
+    border-radius: 10px;
+    display: block;
+}
+
+.project-image--bordered {
+    border: 2px solid white;
+}
+
+.project-meta {
+    font-size: 0.75em;
+    margin: 0.5em;
+}
+
+.project-meta--chernobyl {
+    color: #6bff70;
+}
+
+.project-meta--greenforms {
+    color: #b0ffa2;
+}
+
+.project-meta--fith {
+    color: #cdcdcd;
+}
+
+.project-meta--boba {
+    color: #ff6666;
+}
+
+.project-meta--growing {
+    color: #00d9ff;
+}
+
+.project-link {
+    color: white;
+}
+
 .project-shell img {
     border: none;
-    display: block;
 }
 
 @media (max-width: 768px) {
     .project-shell {
         padding: 1.2rem;
         margin: 1em 0 1.5em;
+    }
+
+    .project-image {
+        width: 100%;
+        max-width: 18rem;
     }
 }

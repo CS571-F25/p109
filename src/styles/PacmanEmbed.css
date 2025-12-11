@@ -34,6 +34,10 @@
     z-index: 1;
 }
 
+.pacman-canvas {
+    background: radial-gradient(circle at 15% 15%, #1e1e2f, #0c0c17 70%);
+}
+
 .pacman-start img,
 .pacman-end img {
     width: min(520px, 100%);
@@ -103,6 +107,23 @@
 
 .pacman-end {
     display: none;
+}
+
+.pacman-role,
+.pacman-description,
+.pacman-note {
+    font-size: 0.75em;
+    margin: 0.5em;
+}
+
+.pacman-role,
+.pacman-description {
+    color: #f9e34f;
+}
+
+.pacman-note {
+    color: #7f732e;
+    margin-bottom: 0.5em;
 }
 
 #endScButtons {

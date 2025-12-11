@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Super+Bubbly&display=swap');
+
+.about-page {
+    color: #503c25;
+}
+
+.about-title {
+    font-size: 2em;
+}
+
+.about-subtitle {
+    margin-top: 1em;
+}
+
+.about-card {
+    padding: 0.5rem;
+    color: #503c25;
+    font-size: 1.25em;
+    font-family: 'SuperBubbly', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    border: 5px solid #503c25;
+    border-radius: 18px;
+}
+
+.about-flex {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-photo {
+    width: 15rem;
+    border-radius: 10px;
+}
+
+.about-text p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.about-contact {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.about-contact-icon {
+    width: 5rem;
+    border-radius: 10px;
+}

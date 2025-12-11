@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Super+Bubbly&display=swap');
+
+.experience-page {
+    color: #503c25;
+    font-size: 1.5em;
+    font-family: 'SuperBubbly', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    background-image: url(/p109/other/experience_background.png);
+    background-size: cover;
+    background-position: center;
+    padding: 2rem;
+    border-radius: 18px;
+}
+
+.experience-title {
+    font-size: 2em;
+    margin: 0.5em 0;
+}
+
+.experience-sections {
+    margin-top: 1.5em;
+}
+
+.experience-card {
+    background-color: white;
+    opacity: 0.95;
+    border: 5px solid #503c25;
+    padding: 1em;
+    border-radius: 10px;
+    margin-bottom: 1em;
+}
+
+.experience-card--muted {
+    opacity: 0.9;
+}
+
+.experience-heading {
+    font-size: 1.5em;
+    margin: 0.3em 0 0.3em;
+}
+
+.experience-detail {
+    font-size: 0.75em;
+    margin: 0.3em 0;
+}
+
+.experience-gallery {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.experience-image {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.experience-image.tall {
+    width: auto;
+    height: 15rem;
+}

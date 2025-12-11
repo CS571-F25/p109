@@ -125,7 +125,7 @@ export default function Home() {
             
             <button
                 onClick={toggleImplementation}
-                className="implementation-button"
+                className={`implementation-button ${showImplementation ? 'active' : 'inactive'}`}
             >
                 implementation
             </button>

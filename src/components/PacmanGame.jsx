@@ -43,12 +43,12 @@ export function PacmanGame() {
                     <button id="startButton" className="pacman-button">start</button>
                 </div>
             </div>
-            <canvas id="gameCanvas" style={{ background: 'radial-gradient(circle at 15% 15%, #1e1e2f, #0c0c17 70%)' }}/>
-            <p style={{ fontSize: '0.75em', margin: '0.5em', color: '#f9e34f' }}><strong>frontend developer & user interface designer</strong> in a team of 6</p>
-            <p style={{ fontSize: '0.75em', marginBottom: '0.5em', color: '#f9e34f' }}>This is a recreation of the classic “Pac-Man” game using HTML, CSS, JavaScript with animation and frame support via Canvas API.</p>
-            <em style={{ fontSize: '0.75em', marginBottom: '0.5em', color: '#7f732eff' }}>*This is the full game with some tweaks for my portfolio, please expect bugs!</em>
+            <canvas id="gameCanvas" className="pacman-canvas" />
+            <p className="pacman-role"><strong>frontend developer &amp; user interface designer</strong> in a team of 6</p>
+            <p className="pacman-description">This is a recreation of the classic “Pac-Man” game using HTML, CSS, JavaScript with animation and frame support via Canvas API.</p>
+            <em className="pacman-note">*This is the full game with some tweaks, please expect bugs! WASD to move & ESC to quit.</em>
 
-            <div id="endScreen" className="pacman-layer pacman-end" style={{ display: 'none' }}>
+            <div id="endScreen" className="pacman-layer pacman-end">
                 <img id="endScImg" src={endScreenDefaultImg} alt="Game over" />
                 <div id="endScButtons">
                     <button id="goHomeButton" className="pacman-button">home</button>
