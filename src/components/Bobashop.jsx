@@ -7,7 +7,7 @@ import { useGLTF, useAnimations } from '@react-three/drei'
 
 export function Bobashop(props) {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/p109/emsbobashop_FINAL.glb')
+  const { nodes, materials, animations } = useGLTF('/p109/other/emsbobashop_FINAL.glb')
   const { actions } = useAnimations(animations, group)
 
   return (
@@ -2367,4 +2367,4 @@ export function Bobashop(props) {
   )
 }
 
-useGLTF.preload('/emsbobashop_FINAL.glb')
+useGLTF.preload('/p109/other/emsbobashop_FINAL.glb')

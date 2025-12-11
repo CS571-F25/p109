@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.pacman-shell {
+    position: relative;
+    width: 100%;
+    min-height: 30rem;
+    padding: 2rem;
+    background: radial-gradient(circle at 15% 15%, #1e1e2f, #0c0c17 70%);
+    border: 2px solid #f9e34f;
+    border-radius: 18px;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35), 0 0 0 8px rgba(249, 227, 79, 0.14);
+    overflow: hidden;
+    margin-bottom: 1.5em;
+}
+
+.pacman-layer {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    color: #f7f7f7;
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+}
+
+.pacman-shell canvas {
+    display: none;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.pacman-start img,
+.pacman-end img {
+    width: min(520px, 100%);
+    height: auto;
+    border-radius: 18px;
+    box-shadow: 0 18px 24px rgba(0, 0, 0, 0.45);
+}
+
+.pacman-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.pacman-inputs input {
+    font-size: 0.75rem;
+    padding: 12px 14px;
+    border: 1px solid #f9e34f;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #f7f7f7;
+    min-width: 220px;
+    text-align: center;
+    outline: none;
+}
+
+.pacman-button {
+    font-size: 0.75rem;
+    padding: 1rem 3rem;
+    border: none;
+    background: linear-gradient(120deg, #f9e34f, #ff8f1f);
+    color: #111118;
+    cursor: pointer;
+    border-radius: 18px;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.04em;
+}
+
+.pacman-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.28);
+    filter: brightness(1.05);
+}
+
+#leaderboardScreen table {
+    width: min(520px, 100%);
+    border-collapse: collapse;
+    color: #f7f7f7;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.3);
+}
+
+#leaderboardScreen th,
+#leaderboardScreen td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 12px 14px;
+    font-size: 0.75rem;
+}
+
+#leaderboardScreen tr:last-child td {
+    border-bottom: none;
+}
+
+.pacman-end {
+    display: none;
+}
+
+#endScButtons {
+    position: relative;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+#cursedGif {
+    display: none;
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 24px;
+    z-index: 3;
+}
+
+#cursedGif img {
+    width: 110px;
+    height: auto;
+}
+
+.pacman-heading {
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    color: #f9e34f;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+    .pacman-shell {
+        min-height: 620px;
+        padding: 22px 14px 26px;
+    }
+
+    .pacman-inputs input,
+    .pacman-button {
+        width: 100%;
+    }
+
+    #cursedGif img {
+        width: 88px;
+    }
+}

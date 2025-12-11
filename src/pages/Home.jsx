@@ -5,7 +5,7 @@ import { Bobashop } from '../components/Bobashop'
 import { MouseClickInteraction } from '../components/MouseClickInteraction'
 import { MouseHoverInteraction } from '../components/MouseHoverInteraction'
 import { CameraSetup } from '../components/CameraSetup'
-import { MeshModal } from '../components/MeshModal'
+import { MeshModal } from '../components/modals/MeshModal'
 import { WelcomeScreen } from '../components/WelcomeScreen'
 import { HamburgerNav } from '../components/HamburgerNav'
 import { HelpModal } from '../components/modals/HelpModal'
@@ -61,6 +61,8 @@ export default function Home() {
         return () => window.removeEventListener('hashchange', handleHashChange)
     }, [])
 
+    // No autoplay; music stays off until user clicks
+
     const handleMeshClick = (meshName) => {
         setSelectedMesh(meshName)
         // Set the hash route when a mesh is clicked
@@ -86,7 +88,9 @@ export default function Home() {
             if (isMusicPlaying) {
                 audioRef.current.pause()
             } else {
-                audioRef.current.play()
+                audioRef.current.play().catch(err => {
+                    console.warn('Audio play interrupted:', err)
+                })
             }
             setIsMusicPlaying(!isMusicPlaying)
         }
@@ -150,7 +154,7 @@ export default function Home() {
 
             {/* Hidden Audio Element */}
             <audio ref={audioRef} loop>
-                <source src="/p109/music.mp3" type="audio/mpeg" />
+                <source src="/p109/website_items/bobamusic.mp3" type="audio/mpeg" />
                 Your browser does not support the audio element.
             </audio>
 

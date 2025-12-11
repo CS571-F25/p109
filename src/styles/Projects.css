@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.project-shell {
+    position: relative;
+    width: 100%;
+    padding: 1.5rem;
+    background: radial-gradient(circle at 15% 15%, #1e1e2f, #0c0c17 70%);
+    border: 2px solid #f9e34f;
+    border-radius: 18px;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35), 0 0 0 8px rgba(249, 227, 79, 0.14);
+    overflow: hidden;
+    margin: 1.2em 0 2em;
+}
+
+.project-shell img {
+    border: none;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .project-shell {
+        padding: 1.2rem;
+        margin: 1em 0 1.5em;
+    }
+}
