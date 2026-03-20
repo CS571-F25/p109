@@ -1,5 +1,4 @@
 import '../styles/AboutMe.css';
-import { Document, Page, Outline, pdfjs } from "react-pdf";
 
 export function AboutMe() {
     return (
@@ -14,15 +13,12 @@ export function AboutMe() {
                         <p>and i'm studying <strong>Computer Science + Information Science</strong>.</p>
                         <p>i'm hoping to go into <strong>interactive media &amp; game design</strong>.</p>
                     </div>
-                    <img src="/p109/other/Bus.png" alt="A drawing of Bus 80 on UW-Madison campus." className="about-photo" height="200rem" />
                 </div>
             </div>
 
             <h2 className="about-title about-subtitle">● my resume ●</h2>
             <div className="about-card">
-                <Document file="/p109/other/Emily Thao Resume.pdf">
-                    <Page pageNumber={1} />
-                </Document>
+                <embed src="/p109/other/Emily Thao Resume.pdf" type="application/pdf" width="100%" height="600px" />
             </div>
 
             <h2 className="about-title about-subtitle">● contact me! ●</h2>
