@@ -11,7 +11,7 @@ export function AboutMe() {
                         <p>hi, my name is <strong>Emily</strong>.</p>
                         <p>i'm a senior at the University of Wisconsin-Madison</p>
                         <p>and i'm studying <strong>Computer Science + Information Science</strong>.</p>
-                        <p>i'm hoping to go into <strong>interactive media &amp; game design</strong>.</p>
+                        <p>i'm hoping to go into <strong>web dev &amp; ui+ux &amp; interactive media &amp; game design</strong>.</p>
                     </div>
                 </div>
             </div>
