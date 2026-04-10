@@ -38,14 +38,13 @@ export function MeshModal({ selectedMesh, onClose }) {
         <div className={`mesh-modal-overlay ${isClosing ? 'closing' : ''}`}>
             <div className={`modal-content ${isClosing ? 'closing' : ''}`}>
                 {pageContent}
-
-                <button
-                    onClick={handleClose}
-                    className="modal-close-button"
-                >
-                    Close
-                </button>
             </div>
+            <button
+                onClick={handleClose}
+                className="modal-close-button"
+            >
+                Close
+            </button>
         </div>
     )
 }

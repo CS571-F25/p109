@@ -78,7 +78,7 @@
     padding: 1.5rem 2rem;
     border-radius: 18px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    z-index: 1100;
+    z-index: 999;
     min-width: 2rem;
     max-width: 30vw;
     max-height: 50vh;
@@ -152,7 +152,7 @@
     cursor: pointer;
     font-size: clamp(1.5rem, 1vw, 16px);
     font-weight: bold;
-    z-index: 1001;
+    z-index: 999;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     white-space: nowrap;
 }

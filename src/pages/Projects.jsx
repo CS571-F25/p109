@@ -19,6 +19,7 @@ export function Projects() {
                 <div>
                     <p className="project-meta project-meta--chernobyl"><strong>designer, artist, and level designer</strong> in a team of 5</p>
                     <p className="project-meta project-meta--chernobyl">This is a Chernobyl dating simulator developed in GameMaker with asset design in Pixel Studio &amp; Procreate.</p>
+                    <p className="project-meta project-meta--chernobyl note"><em>*This game is not available to play. Please reach out for details.</em></p>
                 </div>
             </div>
 

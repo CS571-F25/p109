@@ -60,13 +60,16 @@
 }
 
 .modal-close-button {
-    margin-top: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
     padding: 10px 20px;
     background-color: #fde498;
     color: #6c757d;
     border: none;
     border-radius: 18px;
     cursor: pointer;
+    z-index: 1001;
 }
 
 .modal-close-button:hover {
