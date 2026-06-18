@@ -9,9 +9,9 @@ export function AboutMe() {
                     <img src="/p109/other/Emily Thao.jpeg" alt="A photo of Emily Thao" className="about-photo" height="200rem" />
                     <div className="about-text">
                         <p>hi, my name is <strong>Emily</strong>.</p>
-                        <p>i'm a senior at the University of Wisconsin-Madison</p>
-                        <p>and i'm studying <strong>Computer Science + Information Science</strong>.</p>
-                        <p>i'm hoping to go into <strong>web dev &amp; ui+ux &amp; interactive media &amp; game design</strong>.</p>
+                        <p>i'm a recent graduate of the University of Wisconsin-Madison</p>
+                        <p>and i studied <strong>Computer Science + Information Science</strong>.</p>
+                        <p>i'm hoping to go into <strong>software development &amp; ui & ux design</strong>.</p>
                     </div>
                 </div>
             </div>

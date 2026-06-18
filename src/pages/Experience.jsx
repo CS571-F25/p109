@@ -6,10 +6,11 @@ export function Experience() {
             <h2 className="experience-title">● experience ●</h2>
             <div className="experience-sections">
                 <div className="experience-card">
-                    <h3 className="experience-heading">uw-madison</h3>
-                    <p className="experience-detail">September 2022 - May 2026 (Expected)</p>
-                    <p className="experience-detail">Bachelors of Science in <strong>Computer Science</strong> and <strong>Information Science</strong></p>
-                    <p className="experience-detail">Certificates in Game Design, Asian American Studies, and Digital Studies</p>
+                    <h3 className="experience-heading">atlas arena/nexus games labs, inc</h3>
+                    <p className="experience-detail">June 2026 - Present</p>
+                    <p className="experience-detail">Game Development Intern</p>
+                    <p className="experience-detail">Enhancing a puzzle-based game created by internship coordinators by adding mines.</p>
+                    <p className="experience-detail">Serving as an art director, programmer, and game designer in a team of 5.</p>
                 </div>
                 <div className="experience-card">
                     <div className="experience-gallery">
